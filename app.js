@@ -22,14 +22,17 @@ console.log('Testing the connection to the database...');
 (async () => {
   try {
     // Test the connection to the database
+    await sequelize.authenticate();
+
     console.log('Connection to the database successful!');
 
     // Sync the models
     console.log('Synchronizing the models with the database...');
+    await sequelize.sync({ force: true });
 
     // Add People to the Database
     console.log('Adding people to the database...');
-  
+
     // Update the global variables for the people instances
 
     // Add Movies to the Database
