@@ -60,6 +60,17 @@ console.log('Testing the connection to the database...');
     [bradBird, vinDiesel, eliMarienthal, craigTNelson, hollyHunter] = peopleInstances;
     // Add Movies to the Database
     console.log('Adding movies to the database...');
+    const movieInstances = await Promise.all([
+      Movie.create({
+        title: 'The Iron Giant',
+        releaseYear: 1999,
+      }),
+      Movie.create({
+        title: 'The Incredibles',
+        releaseYear: 2004,
+      }),
+    ]);
+    console.log(JSON.stringify(movieInstances, null, 2));
 
     // Retrieve movies
 
