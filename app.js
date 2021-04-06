@@ -64,10 +64,12 @@ console.log('Testing the connection to the database...');
       Movie.create({
         title: 'The Iron Giant',
         releaseYear: 1999,
+        directorPersonId: bradBird.id
       }),
       Movie.create({
         title: 'The Incredibles',
         releaseYear: 2004,
+        directorPersonId: bradBird.id
       }),
     ]);
     console.log(JSON.stringify(movieInstances, null, 2));
