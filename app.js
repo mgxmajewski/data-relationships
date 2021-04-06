@@ -74,6 +74,40 @@ console.log('Testing the connection to the database...');
     ]);
     console.log(JSON.stringify(movieInstances, null, 2));
 
+    // Update the global variables for the movie instances
+    [theIronGiant, theIncredibles] = movieInstances;
+
+    // NOTE: If the instances for the `actors` association are new
+    // then we can add them at the same time as we add the
+    // movie, but since our actors have already been inserted
+    // into the database, we need to use the following approach.
+
+    // Instance methods added to manage the many-to-many relationship.
+
+    // const p1a = theIronGiant.addActor(vinDiesel);
+    // const p1b = theIronGiant.addActor(eliMarienthal);
+
+    const p1c = theIronGiant.addActors([
+      vinDiesel,
+      eliMarienthal
+    ]);
+
+    // const p1 = theIronGiant.setActors([
+    //   vinDiesel,
+    //   eliMarienthal,
+    // ]);
+
+    const p2 = theIncredibles.setActors([
+      craigTNelson,
+      hollyHunter,
+    ]);
+
+    const actors = await Promise.all([
+      p1c,
+      p2,
+    ]);
+    console.log(JSON.stringify(actors, null, 2));
+
     // Retrieve movies
     const movies = await Movie.findAll({
       include: [
