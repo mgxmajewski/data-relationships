@@ -79,6 +79,7 @@ console.log('Testing the connection to the database...');
       include: [
         {
           model: Person,
+          as: 'director'
         },
       ],
     });
