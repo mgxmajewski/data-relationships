@@ -110,10 +110,20 @@ console.log('Testing the connection to the database...');
 
     // Retrieve movies
     const movies = await Movie.findAll({
+      // attributes: ['id', 'title', 'releaseYear'],
       include: [
         {
           model: Person,
-          as: 'director'
+          as: 'director',
+        },
+        {
+          model: Person,
+          as: 'actors',
+          // attributes: ['firstName', 'lastName'],
+          through: {
+            // this removes the through model properties from being included
+            attributes: [],
+          },
         },
       ],
     });
@@ -121,10 +131,21 @@ console.log('Testing the connection to the database...');
 
     // Retrieve people
     const people = await Person.findAll({
+      // attributes: ['id', 'firstName', 'lastName'],
       include: [
         {
           model: Movie,
-          as: 'director'
+          as: 'director',
+          attributes: ['id', 'title', 'releaseYear'],
+        },
+        {
+          model: Movie,
+          as: 'actor',
+          attributes: ['id', 'title', 'releaseYear'],
+          through: {
+            // this removes the through model properties from being included
+            attributes: [],
+          },
         },
       ],
     });
